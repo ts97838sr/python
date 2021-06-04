@@ -36,6 +36,30 @@ def delete_all_files(path):
                 else:
                     exit(0)
 
+def delete_files_starting_ending_with(directory: str, pattern: str,flag: str):
+    """
+    Deletes all files in a directory ending with the provided pattern
+    :param directory: Directory where to search
+    :param pattern: Search pattern
+    :param flag: start or end flag [Values S-> start , E-> end]
+    :return:
+    """
+    if not os.path.exists(directory):
+        return
+    if not os.path.isdir(directory):
+        raise Exception("Expected a directory")
+        exit(1)
+    for root,dirs,files in os.walk(directory):
+        if flag == 'S':
+            for file in [os.path.join(root,x) for x in files if x.endswith(pattern)]:
+                os.remove(file)
+        elif flag == 'E':
+            for file in [os.path.join(root,x) for x in files if x.startswith(pattern)]:
+                os.remove(file)
+        else:
+            raise Exception("Flag Value not matching start or end pattern")
+            exit(1)
+
 def zip_file(input_path: str,output_path: str):
     """
     Zips a file at the input path and writes it to output path
