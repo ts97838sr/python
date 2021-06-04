@@ -1,7 +1,4 @@
-import calendar,collections,csv,datetime,filecmp,os,shutil,time,zipfile
-from typing import List,Dict,Union
-import pandas as pd
-import xlrd
+import calendar,datetime,os,zipfile
 
 def delete_empty_folders(path):
     """
